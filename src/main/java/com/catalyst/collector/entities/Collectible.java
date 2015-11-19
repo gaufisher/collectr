@@ -2,6 +2,8 @@ package com.catalyst.collector.entities;
 
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Check;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ public class Collectible {
     private Integer id;
 
     @Column(nullable = false, unique = true)
+    @Check(constraints = "catalogueNumber ~'^[A-Z]{3}-[0-9]{12}$'")
     private String catalogueNumber;
 
     @Column(nullable = false, length = 255)
